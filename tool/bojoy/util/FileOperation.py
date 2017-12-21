@@ -14,10 +14,10 @@ def createFile(fileName, filePath):
             writer.writerow(row)
     with open(filePath, 'a+', newline='') as f:
         rows = [['3', '4', '5'], ['4', '5', '6']]
-
         writer = csv.writer(f)
         for row in rows:
             writer.writerow(row)
+
     with open(filePath, 'r+', newline='') as csv_file:
         reader = csv.reader(csv_file)
         for row in reader:
