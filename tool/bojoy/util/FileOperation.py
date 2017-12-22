@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import csv
 import os
+import codecs
 
 # for test
 def createFile(fileName, filePath):
@@ -42,7 +43,8 @@ class FileOp:
         else:
             flag = 'a'
         return open(filePath, flag, newline='')
-    def addRow(self,rowContent):
+
+    def addRow(self, rowContent):
         writer = csv.writer(self.f)
         writer.writerow(rowContent)
 
@@ -53,11 +55,19 @@ class FileOp:
             for row in reader:
                 print(str(row))
 
+    @staticmethod
+    def readSql(folderPath, fileName):
+        filePath = folderPath + "\\" + fileName
+        with open(filePath, 'r+', encoding='utf-8') as f:
+            # firstLine = f.read()
+            # if firstLine[:3] == codecs.BOM_UTF8:
+            #     print("dddd")
+            return "".join(f.readlines())
+
 
 if __name__ == '__main__':
     # createFile("Test.csv", "e:\\hhh")
     # print(FileOp.output2File("e:\\hhh2", "Test.csv"))
     f = FileOp("e:\\hhh2", "Test.csv")
-    f.addRow([1,2,3,4,5])
+    f.addRow([1, 2, 3, 4, 5])
     f.showContent()
-

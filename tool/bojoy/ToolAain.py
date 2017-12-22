@@ -5,10 +5,15 @@ from util.MySqlConn import MySQL
 import os
 
 if __name__ == '__main__':
-    # conn = MySQL()
-    # r = conn.query("select * from union_task")
+    conn = MySQL()
+
     # f = FileOp("e:\\hhh2", "Test.csv")
-    # for x in r:
-    #     f.addRow(x)
+
     print(os.path.abspath('..\..'))
+    folderName = os.path.abspath('..\..') +"\\sql"
+    s = FileOp.readSql(folderName,"引导进度.sql")
+    print(s)
+    r = conn.query(s)
+    for x in r:
+        print(x)
     pass

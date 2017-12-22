@@ -1,4 +1,4 @@
-﻿SELECT
+SELECT
 	r.n_roleid 								角色ID,
 	r.s_rolename 							角色名,
 	r.d_create 								注册时间,
@@ -26,4 +26,4 @@ r.n_roleid = p.n_roleid
 AND r.n_roleid = b.n_roleid
 AND r.n_roleid = po.n_roleid
 AND r.n_roleid = acc.n_roleid
-AND b.n_bid = 101
+AND b.n_bid = 101;

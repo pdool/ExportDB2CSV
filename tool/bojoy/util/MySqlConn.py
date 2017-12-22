@@ -12,7 +12,7 @@ class MySQL(object):
 
     def __init__(self, host='192.168.0.80',port=3300, user='root', passwd='123456', db='unity3dm_chongxin_db'):
         """MySQL Database initialization """
-        self.conn = pymysql.connect(host=host, port=port,user=user, passwd=passwd, db=db)
+        self.conn = pymysql.connect(host=host, port=port,user=user, passwd=passwd, db=db,charset='utf8')
         self.cursor = self.conn.cursor()
 
     def query(self, sql):
