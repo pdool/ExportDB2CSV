@@ -32,9 +32,11 @@ class FileOp:
         self.f = self.__output2File()
 
     def __del__(self):
-        self.f.close()
+        if hasattr(self,"f"):
+            self.f.close()
 
     def __output2File(self):
+
         filePath = self.folderPath + "\\" + self.fileName
         if os.path.exists(self.folderPath) is False:
             os.makedirs(self.folderPath)
@@ -48,12 +50,16 @@ class FileOp:
         writer = csv.writer(self.f)
         writer.writerow(rowContent)
 
-    def showContent(self):
-        filePath = self.folderPath + "\\" + self.fileName
+    @staticmethod
+    def showContent(folderPath, fileName):
+        filePath = folderPath + "\\" + fileName
+        rows = []
         with open(filePath, 'r+', newline='') as csv_file:
             reader = csv.reader(csv_file)
             for row in reader:
-                print(str(row))
+                rows.append(row)
+                # print(str(row))
+        return rows
 
     @staticmethod
     def readSql(folderPath, fileName):
@@ -65,9 +71,9 @@ class FileOp:
             return "".join(f.readlines())
 
 
-if __name__ == '__main__':
-    # createFile("Test.csv", "e:\\hhh")
-    # print(FileOp.output2File("e:\\hhh2", "Test.csv"))
-    f = FileOp("e:\\hhh2", "Test.csv")
-    f.addRow([1, 2, 3, 4, 5])
-    f.showContent()
+# if __name__ == '__main__':
+#     # createFile("Test.csv", "e:\\hhh")
+#     # print(FileOp.output2File("e:\\hhh2", "Test.csv"))
+#     f = FileOp("e:\\hhh2", "Test.csv")
+#     f.addRow([1, 2, 3, 4, 5])
+#     f.showContent()

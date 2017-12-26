@@ -18,6 +18,9 @@ class MySQL(object):
     def query(self, sql):
         """  Execute SQL statement """
         self.cursor.execute(sql)
+        # t = self.conn.store_result()
+        # (field_info) =  t.describe()
+        # print(field_info)
         return self.cursor.fetchall()
 
     def show(self):
