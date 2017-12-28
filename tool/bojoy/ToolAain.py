@@ -23,5 +23,4 @@ if __name__ == '__main__':
         for x in r:
             csvFile.addRow(x)
 
-    print("xxxxxxxxxxxxxxxxx")
-    i = input("")
+    print("导出成功")
