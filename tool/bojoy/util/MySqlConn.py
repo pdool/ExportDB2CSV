@@ -21,10 +21,13 @@ class MySQL(object):
 
     def query(self, sql):
         """  Execute SQL statement """
+        self.conn.autocommit(False)
         sql = self.replaceSql(sql)
-        print('\033[1;31;40m')
-        print(sql)
+        # print('\033[1;31;40m')
+        # print(sql)
         self.cursor.execute(sql)
+
+        self.conn.commit()
         # t = self.conn.store_result()
         # (field_info) =  t.describe()
         # print(field_info)
