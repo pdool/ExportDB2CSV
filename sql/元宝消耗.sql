@@ -16,4 +16,5 @@ from unity3dm_cn_cn_db.player_roles r,
 WHERE
 	t.n_op_type = 2
 and r.n_roleid = t.n_roleid
+AND  DATEDIFF(d_time,NOW())=-1
 GROUP BY t.n_roleid
