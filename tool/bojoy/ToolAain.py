@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import sys
+
 from util.FileOperation import FileOp
 from util.MySqlConn import MySQL
 import os
@@ -22,5 +24,6 @@ if __name__ == '__main__':
         # print( r)
         for x in r:
             csvFile.addRow(x)
-
+        del csvFile
+    conn.cursor.close()
     print("导出成功")

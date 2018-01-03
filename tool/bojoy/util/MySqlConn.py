@@ -2,21 +2,35 @@
 # -*- coding: utf-8 -*-
 import datetime
 
+from sshtunnel import SSHTunnelForwarder
 import pymysql
-import time
-from win32timezone import now
 
 
 class MySQL(object):
     '''
     MySQL
     '''
-    db = "unity3dm_cn_cn_db."
-    logdb = "unity3dm_cn_cn_log."
+    db = "unity3dm_cn_cn_db341000000."
+    logdb = "unity3dm_cn_cn_log341000000."
 
-    def __init__(self, host='192.168.0.80', port=3300, user='root', passwd='123456', db='unity3dm_cn_cn_wrdlog'):
+    def __init__(self):
         """MySQL Database initialization """
-        self.conn = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=db, charset='utf8')
+        server = SSHTunnelForwarder(
+                ssh_address_or_host =('118.89.188.233', 528),  # B机器的配置
+                ssh_password="KNL2QvVDAuTgtE3B",
+                ssh_username="root",
+                local_bind_address=('127.0.0.1', 3306),  # 绑定的端口
+                remote_bind_address=('10.66.220.202', 3306))
+        # 代理远程的端口
+        server.start()
+        self.conn =  pymysql.connect(host='127.0.0.1',  # 此处必须是是127.0.0.1
+                           port=3306,
+                           user='root',
+                           passwd='SPQ7C7ZR4yvz6Q^^',
+                           db='unity3dm_cn_cn_db341000000',
+                            charset='utf8')
+
+        # self.conn = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=db, charset='utf8')
         self.cursor = self.conn.cursor()
 
     def query(self, sql):
@@ -41,6 +55,7 @@ class MySQL(object):
         """ Terminate the connection """
         self.cursor.close()
         self.conn.close()
+
 
     def replaceSql(self, sql):
         now = datetime.datetime.now()

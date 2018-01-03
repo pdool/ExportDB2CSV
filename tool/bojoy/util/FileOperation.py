@@ -29,11 +29,16 @@ class FileOp:
     def __init__(self, folderPath, fileName):
         self.folderPath = folderPath
         self.fileName = fileName
+
+        print(fileName)
         self.f = self.__output2File()
 
     def __del__(self):
         if hasattr(self,"f"):
+            print("close !!!!!")
             self.f.close()
+            return
+        print("f is not exist")
 
     def __output2File(self):
 
