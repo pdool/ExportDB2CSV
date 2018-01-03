@@ -23,8 +23,7 @@ FROM
               "|", -1
           ) result
         FROM
-          {logdb.
-          }log_player_action{DATE}
+          {logdb.}log_player_action{date}
                             WHERE
                             s_atype = 356
                             AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
@@ -55,8 +54,7 @@ FROM
                             "|", -1
                         ) result
                       FROM
-                        {logdb.
-                        }log_player_action{DATE}
+                        {logdb.}log_player_action{date}
                                           WHERE
                                           s_atype = 356
                                           AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
@@ -86,8 +84,7 @@ FROM
                         "|", -1
                     ) result
                   FROM
-                    {logdb.
-                    }log_player_action{DATE}
+                    {logdb.}log_player_action{date}
                                       WHERE
                                       s_atype = 356
                                       AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
@@ -115,8 +112,7 @@ FROM
                         "|", -1
                     ) result
                   FROM
-                    {logdb.
-                    }log_player_action{DATE}
+                    {logdb.}log_player_action{date}
                                       WHERE
                                       s_atype = 356
                                       AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")

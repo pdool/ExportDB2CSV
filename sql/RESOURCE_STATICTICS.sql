@@ -183,6 +183,5 @@ FROM
      -
      (substring_index(
          @tempIron, '_', 1))  iron
-   FROM {logdb.
-     }log_reward2017_12{DATE}
+   FROM {logdb.}log_reward{date}
                        WHERE DATE_FORMAT(d_time, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")) tempReward;

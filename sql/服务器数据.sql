@@ -1,93 +1,93 @@
 SELECT
-	(
-		SELECT
-			s_value
-		FROM
-			dict_keyvalue
-		WHERE
-			s_key = "server_open"
-	) ¿ª·şÊ±¼ä,
-	(
-		SELECT
-			count(*)
-		FROM
-			union_info
-	) ¾üÍÅÊıÁ¿,
-	(
-		SELECT
-			s_value
-		FROM
-			group_info
-		WHERE
-			n_type = 1
-		AND s_sub_type = 0
-	) Ò°¹ÖµÈ¼¶,
-	cao ²ÜÊÆÁ¦ÈËÊı,
-	sun ËïÊÆÁ¦ÈËÊı,
-	liu ÁõÊÆÁ¦ÈËÊı,
-	lv ÂÀÊÆÁ¦ÈËÊı,
-	wu ÎŞÊÆÁ¦ÈËÊı,
-	callNum Éú³ÉÂÒ¾üÉ½Õ¯ÊıÁ¿,
-	beatNum ÏûÃğÂÒ¾üÉ½Õ¯ÊıÁ¿
+  (
+    SELECT
+      s_value
+    FROM
+      dict_keyvalue
+    WHERE
+      s_key = "server_open"
+  ) å¼€æœæ—¶é—´,
+  (
+    SELECT
+      count(*)
+    FROM
+      union_info
+  ) å†›å›¢æ•°é‡,
+  (
+    SELECT
+      s_value
+    FROM
+      group_info
+    WHERE
+      n_type = 1
+      AND s_sub_type = 0
+  ) é‡æ€ªç­‰çº§,
+  cao æ›¹åŠ¿åŠ›äººæ•°,
+  sun å­™åŠ¿åŠ›äººæ•°,
+  liu åˆ˜åŠ¿åŠ›äººæ•°,
+  lv å•åŠ¿åŠ›äººæ•°,
+  wu æ— åŠ¿åŠ›äººæ•°,
+  callNum ç”Ÿæˆä¹±å†›å±±å¯¨æ•°é‡,
+  beatNum æ¶ˆç­ä¹±å†›å±±å¯¨æ•°é‡
 FROM
-	(
-		SELECT
-			COUNT(
-				CASE
-				WHEN n_ingroup = 1 THEN
-					1
-				END
-			) cao,
-			COUNT(
-				CASE
-				WHEN n_ingroup = 2 THEN
-					1
-				END
-			) sun,
-			COUNT(
-				CASE
-				WHEN n_ingroup = 3 THEN
-					1
-				END
-			) liu,
-			COUNT(
-				CASE
-				WHEN n_ingroup = 4 THEN
-					1
-				END
-			) lv,
-			COUNT(
-				CASE
-				WHEN n_ingroup = 5 THEN
-					1
-				END
-			) han,
-			COUNT(
-				CASE
-				WHEN n_ingroup = 0 THEN
-					1
-				END
-			) wu
-		FROM
-			player_property
-	) ingroup,
-	(
-		SELECT
-			count(
-				CASE
-				WHEN s_atype = 357 THEN
-					1
-				END
-			) callNum,
-			count(
-				CASE
-				WHEN s_atype = 358 THEN
-					1
-				END
-			) beatNum
-		FROM
-			{logdb.}log_player_action{date}
-		WHERE
-			DATE_FORMAT(d_create, "%Y_%m") = DATE_FORMAT(NOW(), "%Y_%m")
-	) enemy;
+  (
+    SELECT
+      COUNT(
+          CASE
+          WHEN n_ingroup = 1 THEN
+            1
+          END
+      ) cao,
+      COUNT(
+          CASE
+          WHEN n_ingroup = 2 THEN
+            1
+          END
+      ) sun,
+      COUNT(
+          CASE
+          WHEN n_ingroup = 3 THEN
+            1
+          END
+      ) liu,
+      COUNT(
+          CASE
+          WHEN n_ingroup = 4 THEN
+            1
+          END
+      ) lv,
+      COUNT(
+          CASE
+          WHEN n_ingroup = 5 THEN
+            1
+          END
+      ) han,
+      COUNT(
+          CASE
+          WHEN n_ingroup = 0 THEN
+            1
+          END
+      ) wu
+    FROM
+      player_property
+  ) ingroup,
+  (
+    SELECT
+      count(
+          CASE
+          WHEN s_atype = 357 THEN
+            1
+          END
+      ) callNum,
+      count(
+          CASE
+          WHEN s_atype = 358 THEN
+            1
+          END
+      ) beatNum
+    FROM
+      {logdb.}log_player_action{date}
+                               WHERE
+                               DATE_FORMAT(d_create, "%Y_%m") = DATE_FORMAT(NOW(), "%Y_%m")
+  ) enemy;
 

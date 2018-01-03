@@ -10,9 +10,9 @@ select
 	sum(CASE t.n_type WHEN 147 THEN  IF(LEFT(s_ext,1) = '1' ,substring(s_ext, 3, LENGTH(s_ext)-2 ) + 0 ,0)    ELSE 0 END)  部队加速,
 	sum(CASE t.n_type WHEN 212 THEN (SUBSTRING_INDEX(substring_index(s_rewards,'_', 2),"_",-1)+0) - (SUBSTRING_INDEX(substring_index(s_rewards,'_', -1),"_",-1)+0) ELSE 0 END) 改变势力,
 	sum(CASE t.n_type WHEN 75 THEN s_ext + 0 ELSE 0 END)  军团创建
-from unity3dm_cn_cn_db.player_roles r, 
+from {db.}player_roles r,
 
-	unity3dm_cn_cn_log.log_reward2017_12 t
+  {logdb.}log_reward{date} t
 WHERE
 	t.n_op_type = 2
 and r.n_roleid = t.n_roleid

@@ -18,12 +18,13 @@ if __name__ == '__main__':
         csvFile = FileOp(rootPath + "\\csvs", item[1]+".csv")
         csvFile.addRow(item[3].split(","))
         # print(sql)
-        r = conn.query(sql)
-
+        try:
+            r = conn.query(sql)
 
         # print( r)
-        for x in r:
-            csvFile.addRow(x)
-        del csvFile
-    conn.cursor.close()
+            for x in r:
+                csvFile.addRow(x)
+            del csvFile
+        except Exception as e:
+            print("出现问题" + str(e))
     print("导出成功")

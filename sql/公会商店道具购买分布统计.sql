@@ -8,8 +8,8 @@ SELECT
   , substring_index(s_ext,'_', -1) 购买时战力
   ,t.d_time 购买时间
 FROM
-  unity3dm_cn_cn_log.log_reward2017_12 t,
-  unity3dm_chongxin_db.dict_exchange_template e
+  {logdb.}log_reward{date} t,
+  {db.}dict_exchange_template e
 
 
 where
