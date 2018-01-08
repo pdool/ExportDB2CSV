@@ -23,6 +23,6 @@ player_roles r
 WHERE
 
 	TO_DAYS(NOW()) - TO_DAYS(t.d_reset_start_time) = 1
-and t.s_judge = ''
+and t.n_status >= 2
 and t.n_roleid = r.n_roleid
 GROUP BY t.n_roleid
