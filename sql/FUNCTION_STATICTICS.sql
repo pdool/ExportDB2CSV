@@ -48,11 +48,23 @@ FROM {db.}player_roles
   LEFT JOIN
 
 
-  (SELECT
-     n_roleid,
-     MAX(substring_index(s_event, '|', -1)) daily
-   FROM {logdb.}log_player_action{date}
-   WHERE s_atype = 372 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")) temp3
+  ( (SELECT
+	t.n_roleid,
+	sum(c.n_total_points) daily
+FROM
+{db.}player_daily_task t,
+dict_daily_task c
+WHERE
+	DATE_FORMAT(
+		d_reset_start_time,
+		"%Y_%m_%d"
+	) = DATE_FORMAT(
+		NOW() + INTERVAL - 1 DAY,
+		"%Y_%m_%d"
+	)
+and t.n_status = 2
+and c.n_tid = t.n_tid
+GROUP BY t.n_roleid)) temp3
     ON player_roles.n_roleid = temp3.n_roleid
   LEFT JOIN
 
