@@ -15,21 +15,26 @@ class MySQL(object):
 
     def __init__(self):
         """MySQL Database initialization """
-        server = SSHTunnelForwarder(
-            ssh_address_or_host=('118.89.188.233', 528),  # B机器的配置
-            ssh_password="KNL2QvVDAuTgtE3B",
-            ssh_username="root",
-            local_bind_address=('127.0.0.1', 3306),  # 绑定的端口
-            remote_bind_address=('10.66.220.202', 3306))
-        # 代理远程的端口
-        server.start()
-        self.conn = pymysql.connect(host='127.0.0.1',  # 此处必须是是127.0.0.1
-                                    port=3306,
+        # server = SSHTunnelForwarder(
+        #     ssh_address_or_host=('118.89.188.233', 528),  # B机器的配置
+        #     ssh_password="KNL2QvVDAuTgtE3B",
+        #     ssh_username="root",
+        #     local_bind_address=('127.0.0.1', 3306),  # 绑定的端口
+        #     remote_bind_address=('10.66.220.202', 3306))
+        # # 代理远程的端口
+        # server.start()
+        # self.conn = pymysql.connect(host='127.0.0.1',  # 此处必须是是127.0.0.1
+        #                             port=3306,
+        #                             user='root',
+        #                             passwd='SPQ7C7ZR4yvz6Q^^',
+        #                             db='unity3dm_cn_cn_db341000000',
+        #                             charset='utf8')
+        self.conn = pymysql.connect(host='192.168.0.80',
+                                    port=3300,
                                     user='root',
-                                    passwd='SPQ7C7ZR4yvz6Q^^',
+                                    passwd='123456',
                                     db='unity3dm_cn_cn_db341000000',
                                     charset='utf8')
-
         # self.conn = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=db, charset='utf8')
         self.cursor = self.conn.cursor()
 
@@ -67,9 +72,12 @@ class MySQL(object):
         y = now.strftime('%Y')
         m = int(now.strftime('%m'))
         dateStr = y + "_" + str(m)
-        sql = sql.replace("{db.}", self.db)
-        sql = sql.replace("{logdb.}", self.logdb)
-        sql = sql.replace("{date}", dateStr)
+        if "{db.}" in sql:
+            sql = sql.replace("{db.}", self.db)
+        if "{logdb.}"in sql:
+            sql = sql.replace("{logdb.}", self.logdb)
+        if "{date}" in sql:
+            sql = sql.replace("{date}", dateStr)
         return sql
 
 

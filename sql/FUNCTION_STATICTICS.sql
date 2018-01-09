@@ -1,4 +1,4 @@
-﻿SELECT
+SELECT
   player_roles.n_roleid   角色id,
   player_roles.s_rolename 角色名,
   n_online                当日在线时长,

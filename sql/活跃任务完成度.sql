@@ -1,4 +1,4 @@
-﻿SELECT
+SELECT
 t.n_roleid
 ,r.s_rolename
 ,max(case t.n_tid when 3020 then  1 else 0 end ) 每日签到1次
