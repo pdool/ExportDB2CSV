@@ -43,17 +43,18 @@ FROM {db.}player_roles
         substring_index(substring_index(s_event, '|', -2), '|', 1)  type,
         substring_index(substring_index(s_event, '|', -2), '|', -1) time
       FROM {logdb.}log_player_action{date}
-      WHERE s_atype = 371 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")) temp999) temp2
+      WHERE s_atype = 371 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")) temp999 GROUP BY n_roleid) temp2
     ON player_roles.n_roleid = temp2.n_roleid
   LEFT JOIN
 
 
-  ( (SELECT
+
+  (SELECT
 	t.n_roleid,
 	sum(c.n_total_points) daily
 FROM
 {db.}player_daily_task t,
-dict_daily_task c
+{db.}dict_daily_task c
 WHERE
 	DATE_FORMAT(
 		d_reset_start_time,
@@ -64,9 +65,10 @@ WHERE
 	)
 and t.n_status = 2
 and c.n_tid = t.n_tid
-GROUP BY t.n_roleid)) temp3
+GROUP BY t.n_roleid) temp3
     ON player_roles.n_roleid = temp3.n_roleid
   LEFT JOIN
+
 
 
   (SELECT

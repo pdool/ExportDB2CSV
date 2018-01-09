@@ -3,7 +3,7 @@ select
 	r.s_rolename, 
 		sum(CASE t.n_type WHEN 38 THEN (SUBSTRING_INDEX(substring_index(s_rewards,'_', 2),"_",-1)+0) - (SUBSTRING_INDEX(substring_index(s_rewards,'_', -1),"_",-1)+0)
 		when 2 then (SUBSTRING_INDEX(substring_index(s_rewards,'_', 2),"_",-1)+0) - (SUBSTRING_INDEX(substring_index(s_rewards,'_', -1),"_",-1)+0)
-		ELSE 0 END) 商城购买,购买,
+		ELSE 0 END) 商城购买,
 	sum(CASE t.n_type WHEN 138 THEN s_ext + 0 ELSE 0 END)  建筑加速,
 	sum(CASE t.n_type WHEN 139 THEN s_ext + 0 ELSE 0 END)  招募加速,
 	sum(CASE t.n_type WHEN 140 THEN s_ext + 0 ELSE 0 END)  治疗加速,
