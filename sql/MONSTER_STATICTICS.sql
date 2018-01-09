@@ -25,7 +25,7 @@ FROM
         FROM
           {logdb.}log_player_action{date}
                             WHERE
-                            s_atype = 356
+                            s_atype = 357
                             AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
       ) temp
     GROUP BY
@@ -56,7 +56,7 @@ FROM
                       FROM
                         {logdb.}log_player_action{date}
                                           WHERE
-                                          s_atype = 356
+                                          s_atype = 357
                                           AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
                     ) temp
                   GROUP BY
@@ -86,7 +86,7 @@ FROM
                   FROM
                     {logdb.}log_player_action{date}
                                       WHERE
-                                      s_atype = 356
+                                      s_atype = 357
                                       AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
                 ) temp
               WHERE
@@ -114,7 +114,7 @@ FROM
                   FROM
                     {logdb.}log_player_action{date}
                                       WHERE
-                                      s_atype = 356
+                                      s_atype = 357
                                       AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
                 ) temp
               WHERE

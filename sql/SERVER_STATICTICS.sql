@@ -23,6 +23,7 @@ SELECT
   sun     孙势力人数,
   liu     刘势力人数,
   lv      吕势力人数,
+  han     汉势力人数,
   wu      无势力人数,
   callNum 生成乱军山寨数量,
   beatNum 消灭乱军山寨数量
