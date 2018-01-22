@@ -38,5 +38,6 @@ SELECT
 FROM
 	player_roles r
 LEFT JOIN player_army_lib a ON a.n_roleid = r.n_roleid
+ where  r.s_source <> 'pc'
 GROUP BY
 	r.n_roleid

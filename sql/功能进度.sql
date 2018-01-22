@@ -12,5 +12,5 @@ FROM
 	player_task_list_3d  d,
 	player_roles r
 where d.n_roleid = r.n_roleid
-
+AND  r.s_source <> 'pc'
 group by d.n_roleid

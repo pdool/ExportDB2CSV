@@ -41,4 +41,5 @@ FROM
 
 WHERE
 	b.n_roleid = r.n_roleid
+	AND  r.s_source <> 'pc'
 GROUP BY r.n_roleid

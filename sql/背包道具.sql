@@ -114,5 +114,5 @@ MAX(CASE b.n_item_id WHEN 1900002 THEN b.n_count ELSE 0 END)  军令
 FROM
 	player_roles r
 LEFT JOIN player_pack b ON b.n_roleid = r.n_roleid
-
+where  r.s_source <> 'pc'
 GROUP BY r.n_roleid

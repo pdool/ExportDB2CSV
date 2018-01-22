@@ -29,4 +29,5 @@ WHERE
   AND r.n_roleid = acc.n_roleid
   and r.n_roleid = tp.n_roleid
   and tp.n_type = 112
-  AND b.n_bid = 101;
+  AND b.n_bid = 101
+AND  r.s_source <> 'pc'

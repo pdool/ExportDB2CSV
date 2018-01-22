@@ -25,4 +25,5 @@ WHERE
 	TO_DAYS(NOW()) - TO_DAYS(t.d_reset_start_time) = 1
 and t.n_status >= 2
 and t.n_roleid = r.n_roleid
+	AND  r.s_source <> 'pc'
 GROUP BY t.n_roleid

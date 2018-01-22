@@ -186,7 +186,8 @@ FROM
      (substring_index(
          @tempIron, '_', 1))  iron
    FROM {logdb.}log_reward{date}
-   WHERE DATE_FORMAT(d_time, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")) tempReward,
+   WHERE DATE_FORMAT(d_time, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")) tempReward,
   {db.}player_roles np
 WHERE tempReward.n_roleid = np.n_roleid
+AND  np.s_source <> 'pc'
 GROUP BY tempReward.n_roleid;

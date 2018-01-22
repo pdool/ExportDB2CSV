@@ -74,4 +74,5 @@ where t.rownum <= 10
 
       and dh.n_hid = t.n_hid
       and r.n_roleid = t.n_role_id
+  AND  r.s_source <> 'pc'
 GROUP BY r.n_roleid

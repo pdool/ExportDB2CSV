@@ -94,6 +94,6 @@ FROM
     FROM
       {logdb.}log_player_action{date}
                         WHERE
-                        DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY , "%Y_%m_%d")
+                        DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY , "%Y_%m_%d")
   ) enemy;
 

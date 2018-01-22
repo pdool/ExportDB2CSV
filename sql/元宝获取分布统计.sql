@@ -6,4 +6,4 @@ SELECT
 ,t.d_create 赠送时间
 FROM
 	acc_handsel t
-WHERE  DATEDIFF(d_create,NOW())=-1
+WHERE  DATEDIFF(d_create,NOW())=-3

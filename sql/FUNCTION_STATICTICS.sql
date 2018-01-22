@@ -1,4 +1,5 @@
 SELECT
+  DISTINCT
   player_roles.n_roleid   角色id,
   player_roles.s_rolename 角色名,
   n_online                当日在线时长,
@@ -19,7 +20,7 @@ FROM {db.}player_roles
      n_roleid,
      n_online
    FROM {db.}log_player_daily_online
-   WHERE d_date = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y-%m-%d")) temp1 ON player_roles.n_roleid = temp1.n_roleid
+   WHERE d_date = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y-%m-%d")) temp1 ON player_roles.n_roleid = temp1.n_roleid
   LEFT JOIN
 
 
@@ -43,7 +44,7 @@ FROM {db.}player_roles
         substring_index(substring_index(s_event, '|', -2), '|', 1)  type,
         substring_index(substring_index(s_event, '|', -2), '|', -1) time
       FROM {logdb.}log_player_action{date}
-      WHERE s_atype = 371 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")) temp999 GROUP BY n_roleid) temp2
+      WHERE s_atype = 371 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")) temp999 GROUP BY n_roleid) temp2
     ON player_roles.n_roleid = temp2.n_roleid
   LEFT JOIN
 
@@ -77,7 +78,7 @@ GROUP BY t.n_roleid) temp3
    FROM {logdb.}log_player_action{date}
    WHERE
      s_atype = 373 AND
-     DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
+     DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")
    GROUP BY n_roleid) temp4 ON player_roles.n_roleid = temp4.n_roleid
   LEFT JOIN
 
@@ -85,7 +86,7 @@ GROUP BY t.n_roleid) temp3
      n_roleid,
      COUNT(*) monster
    FROM {logdb.}log_player_action{date}
-   WHERE s_atype = 357 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
+   WHERE s_atype = 357 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")
    GROUP BY n_roleid) temp5 ON player_roles.n_roleid = temp5.n_roleid
   LEFT JOIN
 
@@ -93,7 +94,7 @@ GROUP BY t.n_roleid) temp3
      n_roleid,
      COUNT(*) yellow
    FROM {logdb.}log_player_action{date}
-   WHERE s_atype = 360 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
+   WHERE s_atype = 360 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")
    GROUP BY n_roleid) temp6 ON player_roles.n_roleid = temp6.n_roleid
   LEFT JOIN
 
@@ -102,7 +103,7 @@ GROUP BY t.n_roleid) temp3
      n_roleid,
      COUNT(*) enemy
    FROM {logdb.}log_player_action{date}
-   WHERE s_atype = 359 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")
+   WHERE s_atype = 359 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")
    GROUP BY n_roleid) temp7 ON player_roles.n_roleid = temp7.n_roleid
   LEFT JOIN
 
@@ -110,7 +111,7 @@ GROUP BY t.n_roleid) temp3
      n_roleid,
      substring_index(s_event, '|', -1) donate
    FROM {logdb.}log_player_action{date}
-   WHERE s_atype = 39 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")) temp8
+   WHERE s_atype = 39 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")) temp8
     ON player_roles.n_roleid = temp8.n_roleid
   LEFT JOIN
 
@@ -125,7 +126,7 @@ GROUP BY t.n_roleid) temp3
      n_roleid,
      substring_index(substring_index(s_event, '|', 2), '|', -1) gift
    FROM {logdb.}log_player_action{date}
-   WHERE s_atype = 374 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y_%m_%d")) temp10
+   WHERE s_atype = 374 AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")) temp10
     ON player_roles.n_roleid = temp10.n_roleid
   LEFT JOIN
 
@@ -134,8 +135,10 @@ GROUP BY t.n_roleid) temp3
      substring_index(substring_index(s_event, '|', 2), '|', -1) score
    FROM {logdb.}log_player_action{date}
    WHERE s_atype = 375 AND
-         DATE_FORMAT(substring_index(s_event, '|', -1), "%Y-%m-%d") = DATE_FORMAT(NOW() + INTERVAL -1 DAY, "%Y-%m-%d")) temp11
-    ON player_roles.n_roleid = temp11.n_roleid;
+         DATE_FORMAT(substring_index(d_create, '|', -1), "%Y-%m-%d") = DATE_FORMAT(NOW() , "%Y-%m-%d")) temp11
+    ON player_roles.n_roleid = temp11.n_roleid
+
+where s_source <> 'pc';
 
 
 

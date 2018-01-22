@@ -23,3 +23,4 @@ WHERE
 	r.n_roleid = t.n_roleid
 AND r.n_roleid = b.n_roleid
 AND b.n_bid = 101
+AND  r.s_source <> 'pc'

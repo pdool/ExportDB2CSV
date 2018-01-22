@@ -7,4 +7,4 @@ SELECT
   ,t.d_create 消费时间
 FROM
   acc_reduce_log t
-WHERE DATEDIFF(d_create,NOW())=-1
+WHERE DATEDIFF(d_create,NOW())=-3
