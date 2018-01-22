@@ -22,7 +22,9 @@ FROM
 player_roles r
 WHERE
 
-	TO_DAYS(NOW()) - TO_DAYS(t.d_reset_start_time) = 1
+
+
+	DATE_FORMAT(t.d_reset_start_time,"%Y_%m_%d")={dayStr}
 and t.n_status >= 2
 and t.n_roleid = r.n_roleid
 	AND  r.s_source <> 'pc'

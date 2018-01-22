@@ -17,4 +17,4 @@ where
   t.n_type = 2
   and LEFT(t.s_rewards,2) = '1_'
   and e.n_id = SUBSTRING_INDEX(SUBSTRING_INDEX(t.s_ext,'|',2),"|",-1)+0
-  AND DATEDIFF(d_time,NOW())=-3
+  AND DATE_FORMAT(d_time,"%Y_%m_%d")={dayStr}

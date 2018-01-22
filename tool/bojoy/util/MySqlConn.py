@@ -12,6 +12,8 @@ class MySQL(object):
     '''
     db = "unity3dm_cn_cn_db341008901."
     logdb = "unity3dm_cn_cn_log341008901."
+    def setDayStr(self,dayStr):
+        self.dayStr = "'"+dayStr +"'"
 
     def __init__(self):
         """MySQL Database initialization """
@@ -78,6 +80,8 @@ class MySQL(object):
             sql = sql.replace("{logdb.}", self.logdb)
         if "{date}" in sql:
             sql = sql.replace("{date}", dateStr)
+        if "{dayStr}" in sql:
+            sql = sql.replace("{dayStr}", self.dayStr)
         return sql
 
 

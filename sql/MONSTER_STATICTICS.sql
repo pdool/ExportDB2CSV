@@ -26,7 +26,7 @@ FROM
           {logdb.}log_player_action{date}
                             WHERE
                             s_atype = 357
-                            AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")
+                            AND DATE_FORMAT(d_create, "%Y_%m_%d") = {dayStr}
       ) temp
     GROUP BY
       LEVEL
@@ -57,7 +57,7 @@ FROM
                         {logdb.}log_player_action{date}
                                           WHERE
                                           s_atype = 357
-                                          AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")
+                                          AND DATE_FORMAT(d_create, "%Y_%m_%d") = {dayStr}
                     ) temp
                   GROUP BY
                     LEVEL,
@@ -87,7 +87,7 @@ FROM
                     {logdb.}log_player_action{date}
                                       WHERE
                                       s_atype = 357
-                                      AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")
+                                      AND DATE_FORMAT(d_create, "%Y_%m_%d") = {dayStr}
                 ) temp
               WHERE
                 result = 0
@@ -115,7 +115,7 @@ FROM
                     {logdb.}log_player_action{date}
                                       WHERE
                                       s_atype = 357
-                                      AND DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY, "%Y_%m_%d")
+                                      AND DATE_FORMAT(d_create, "%Y_%m_%d") = {dayStr}
                 ) temp
               WHERE
                 result = 1

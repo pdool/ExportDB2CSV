@@ -7,7 +7,11 @@ from util.MySqlConn import MySQL
 import os
 
 if __name__ == '__main__':
+
+    dayStr = input("输入查询日期(eg:2018_01_18):  ")
+
     conn = MySQL()
+    conn.setDayStr(dayStr)
 
     rootPath = os.path.abspath('..\..')
     configList = FileOp.showContent(rootPath, "config.csv")
@@ -26,7 +30,7 @@ if __name__ == '__main__':
                 csvFile.addRow(x)
             del csvFile
 
-            filePath = rootPath + "\\csvs\\SQL\\" + item[2] + ".sql"
+            filePath = rootPath + "\\csvs\\SQL\\" + item[2] + dayStr+".sql"
             with open(filePath, 'w') as f:
                 f.write(sqlResult)
         except Exception as e:

@@ -6,4 +6,4 @@ SELECT
 ,t.d_create 赠送时间
 FROM
 	acc_handsel t
-WHERE  DATEDIFF(d_create,NOW())=-3
+WHERE  DATE_FORMAT(d_create,"%Y_%m_%d")={dayStr}

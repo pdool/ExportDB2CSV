@@ -18,6 +18,6 @@ from {db.}player_roles r,
 WHERE
 	t.n_op_type = 2
 and r.n_roleid = t.n_roleid
-AND  DATEDIFF(d_time,NOW())=-3
+AND  DATE_FORMAT(d_time,"%Y_%m_%d")={dayStr}
 AND  r.s_source <> 'pc'
 GROUP BY t.n_roleid

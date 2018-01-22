@@ -2,7 +2,7 @@ SELECT
   (
     SELECT s_value
     FROM
-      dict_keyvalue
+      {db.}dict_keyvalue
     WHERE
       s_key = "server_open"
   )       开服时间,
@@ -79,14 +79,14 @@ FROM
     SELECT
       count(
           CASE
-          WHEN s_atype = 357
+          WHEN s_atype = 358
             THEN
               1
           END
       ) callNum,
       count(
           CASE
-          WHEN s_atype = 358 AND substring_index(substring_index(s_event, '|', 2), '|', -1) = 0
+          WHEN s_atype = 359 AND substring_index(substring_index(s_event, '|', 2), '|', -1) = 0
             THEN
               1
           END
@@ -94,6 +94,6 @@ FROM
     FROM
       {logdb.}log_player_action{date}
                         WHERE
-                        DATE_FORMAT(d_create, "%Y_%m_%d") = DATE_FORMAT(NOW() + INTERVAL -3 DAY , "%Y_%m_%d")
+                        DATE_FORMAT(d_create, "%Y_%m_%d") = {dayStr}
   ) enemy;
 

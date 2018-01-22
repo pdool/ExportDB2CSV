@@ -3,7 +3,7 @@ SELECT
     SELECT
       s_value
     FROM
-      dict_keyvalue
+      {db.}dict_keyvalue
     WHERE
       s_key = "server_open"
   ) 开服时间,
