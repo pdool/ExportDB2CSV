@@ -20,7 +20,7 @@ FROM {db.}player_roles
      n_roleid,
      n_online
    FROM {db.}log_player_daily_online
-   WHERE d_date = {dayStr} temp1 ON player_roles.n_roleid = temp1.n_roleid
+   WHERE d_date = {dayStr}) temp1 ON player_roles.n_roleid = temp1.n_roleid
   LEFT JOIN
 
 
@@ -44,7 +44,7 @@ FROM {db.}player_roles
         substring_index(substring_index(s_event, '|', -2), '|', 1)  type,
         substring_index(substring_index(s_event, '|', -2), '|', -1) time
       FROM {logdb.}log_player_action{date}
-      WHERE s_atype = 371 AND DATE_FORMAT(d_create, "%Y_%m_%d") ={dayStr} temp999 GROUP BY n_roleid) temp2
+      WHERE s_atype = 371 AND DATE_FORMAT(d_create, "%Y_%m_%d") ={dayStr}) temp999 GROUP BY n_roleid) temp2
     ON player_roles.n_roleid = temp2.n_roleid
   LEFT JOIN
 
@@ -60,10 +60,7 @@ WHERE
 	DATE_FORMAT(
 		d_reset_start_time,
 		"%Y_%m_%d"
-	) = DATE_FORMAT(
-		NOW() + INTERVAL - 1 DAY,
-		"%Y_%m_%d"
-	)
+	) = {dayStr}
 and t.n_status = 2
 and c.n_tid = t.n_tid
 GROUP BY t.n_roleid) temp3
