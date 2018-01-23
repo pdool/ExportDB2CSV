@@ -37,9 +37,13 @@ FROM
 	GROUP BY
 		bl.n_roleid,
 		bl.n_btype
-) b 
+) b
+	,
+	player_property p
 
 WHERE
 	b.n_roleid = r.n_roleid
 	AND  r.s_source <> 'pc'
+	and r.n_roleid = p.n_roleid
+ and  DATE_FORMAT(p.d_last_online, "%Y_%m_%d") = {dayStr}
 GROUP BY r.n_roleid

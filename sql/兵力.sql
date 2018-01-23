@@ -37,7 +37,10 @@ SELECT
 	
 FROM
 	player_roles r
-LEFT JOIN player_army_lib a ON a.n_roleid = r.n_roleid
+LEFT JOIN player_army_lib a ON a.n_roleid = r.n_roleid,
+   player_property p
  where  r.s_source <> 'pc'
+ and r.n_roleid = p.n_roleid
+ and  DATE_FORMAT(p.d_last_online, "%Y_%m_%d") = {dayStr}
 GROUP BY
 	r.n_roleid

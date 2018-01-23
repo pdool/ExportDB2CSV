@@ -112,7 +112,10 @@ MAX(CASE b.n_item_id WHEN 1800000 THEN b.n_count ELSE 0 END)  小喇叭,
 MAX(CASE b.n_item_id WHEN 1900002 THEN b.n_count ELSE 0 END)  军令
 -- ---------------------------------------------------------------------------
 FROM
+	 player_property p,
 	player_roles r
 LEFT JOIN player_pack b ON b.n_roleid = r.n_roleid
 where  r.s_source <> 'pc'
+	and r.n_roleid = p.n_roleid
+ and  DATE_FORMAT(p.d_last_online, "%Y_%m_%d") = {dayStr}
 GROUP BY r.n_roleid

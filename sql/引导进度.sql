@@ -24,3 +24,4 @@ WHERE
 AND r.n_roleid = b.n_roleid
 AND b.n_bid = 101
 AND  r.s_source <> 'pc'
+ and  DATE_FORMAT(t.d_last_online, "%Y_%m_%d") = {dayStr}

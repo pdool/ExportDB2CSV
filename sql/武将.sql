@@ -69,10 +69,14 @@ from
    ORDER BY
      h.n_role_id) t,
   dict_hero_info dh ,
-  player_roles r
+  player_roles r,
+     player_property p
 where t.rownum <= 10
 
       and dh.n_hid = t.n_hid
       and r.n_roleid = t.n_role_id
-  AND  r.s_source <> 'pc'
+
+ and r.s_source <> 'pc'
+ and r.n_roleid = p.n_roleid
+ and  DATE_FORMAT(p.d_last_online, "%Y_%m_%d") = {dayStr}
 GROUP BY r.n_roleid

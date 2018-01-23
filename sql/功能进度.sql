@@ -10,7 +10,10 @@ SELECT
 FROM
 
 	player_task_list_3d  d,
-	player_roles r
+	player_roles r,
+	player_property p
 where d.n_roleid = r.n_roleid
 AND  r.s_source <> 'pc'
+	and r.n_roleid = p.n_roleid
+ and  DATE_FORMAT(p.d_last_online, "%Y_%m_%d") = {dayStr}
 group by d.n_roleid

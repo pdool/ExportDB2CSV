@@ -132,7 +132,7 @@ GROUP BY t.n_roleid) temp3
      substring_index(substring_index(s_event, '|', 2), '|', -1) score
    FROM {logdb.}log_player_action{date}
    WHERE s_atype = 375 AND
-         DATE_FORMAT(substring_index(d_create, '|', -1), "%Y-%m-%d") = {dayStr}) temp11
+         DATE_FORMAT(substring_index(d_create + INTERVAL -1 DAY, '|', -1), "%Y_%m_%d") = {dayStr}) temp11
     ON player_roles.n_roleid = temp11.n_roleid
 
 where s_source <> 'pc';
