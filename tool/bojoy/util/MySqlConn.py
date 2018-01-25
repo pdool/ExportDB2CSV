@@ -31,8 +31,8 @@ class MySQL(object):
         #                             passwd='SPQ7C7ZR4yvz6Q^^',
         #                             db='unity3dm_cn_cn_db341000000',
         #                             charset='utf8')
-        self.conn = pymysql.connect(host='192.168.0.80',
-                                    port=3300,
+        self.conn = pymysql.connect(host='127.0.0.1',
+                                    port=3306,
                                     user='root',
                                     passwd='123456',
                                     db='unity3dm_cn_cn_db341008901',

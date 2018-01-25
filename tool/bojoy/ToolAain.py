@@ -19,7 +19,7 @@ if __name__ == '__main__':
         item = configList[i]
         sql = FileOp.readSql(rootPath + "\\sql", item[2] + ".sql")
 
-        csvFile = FileOp(rootPath + "\\csvs", item[1] + ".csv")
+        csvFile = FileOp(rootPath + "\\csvs", item[1] + dayStr+ ".csv")
         csvFile.addRow(item[3].split(","))
         # print(sql)
         try:
